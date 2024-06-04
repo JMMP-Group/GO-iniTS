@@ -23,18 +23,18 @@ WOA13v2 datset icludes in-situ temperature and practical salinity. Therefore, in
 
 1) Salinity:
 ```
-cd salinity
+cd data/salinity
 for mm in {1..16}; do
     m=`printf "%02d" ${mm}`;
     echo $m;
     wget https://data.nodc.noaa.gov/woa/WOA13/DATAv2/salinity/netcdf/decav/0.25/woa13_decav_s${m}_04v2.nc;
 done
-cd ../
+cd ../../
 ```
 
 2) Temperature:
 ```
-cd temperature
+cd data/temperature
 for mm in {1..16}; do
     m=`printf "%02d" ${mm}`;
     echo $m;

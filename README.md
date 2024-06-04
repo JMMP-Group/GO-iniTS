@@ -11,7 +11,36 @@ The initial temperature and salinity fields are therefore each a composit of two
 1) upper 1500m: January mean (averaged decades between 1955-2012)
 2) below 1500m: seasonal mean (Jan-Feb-Mar; all decades)
 
-The Geomar [CMIP6-OMIP/OMIP-input](https://git.geomar.de/cmip6-omip/omip-input) repository provides the workflow and the code to generate an initial ocean state in agreement with OMIP protocol.
+The Geomar [CMIP6-OMIP/OMIP-input](https://git.geomar.de/cmip6-omip/omip-input) repository provides an example of the workflow and the code to generate an initial ocean state in agreement with OMIP protocol.
 
-Thd documentation for [WOA13.v2](https://www.ncei.noaa.gov/data/oceans/woa/WOA13/DATAv2/) can be found [here](https://www.ncei.noaa.gov/data/oceans/woa/WOA13/DOC/woa13documentation.pdf).
+## WOA13.v2 data
+
+Thd documentation for [WOA13.v2](https://www.ncei.noaa.gov/data/oceans/woa/WOA13/DATAv2/) dataset can be found [here](https://www.ncei.noaa.gov/data/oceans/woa/WOA13/DOC/woa13documentation.pdf).
+
+WOA13v2 datset icludes in-situ temperature and practical salinity. Therefore, in order to use this data to initialise our TEOS10 based configurations they need to be converted in Conservative Temperature and Absolute Salinity first.
+
+### Downloading the dataset
+
+1) Salinity:
+```
+cd salinity
+for mm in {1..16}; do
+    m=`printf "%02d" ${mm}`;
+    echo $m;
+    wget https://data.nodc.noaa.gov/woa/WOA13/DATAv2/salinity/netcdf/decav/0.25/woa13_decav_s${m}_04v2.nc;
+done
+cd ../
+```
+
+2) Temperature:
+```
+cd temperature
+for mm in {1..16}; do
+    m=`printf "%02d" ${mm}`;
+    echo $m;
+    wget https://data.nodc.noaa.gov/woa/WOA13/DATAv2/temperature/netcdf/decav/0.25/woa13_decav_s${m}_04v2.nc;
+done
+cd ../
+```
+ 
 

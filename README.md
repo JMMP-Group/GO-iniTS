@@ -17,30 +17,5 @@ The Geomar [CMIP6-OMIP/OMIP-input](https://git.geomar.de/cmip6-omip/omip-input) 
 
 Thd documentation for [WOA13.v2](https://www.ncei.noaa.gov/data/oceans/woa/WOA13/DATAv2/) dataset can be found [here](https://www.ncei.noaa.gov/data/oceans/woa/WOA13/DOC/woa13documentation.pdf).
 
-WOA13v2 datset icludes in-situ temperature and practical salinity. Therefore, in order to use this data to initialise our TEOS10 based configurations they need to be converted in Conservative Temperature and Absolute Salinity first.
-
-### Downloading the dataset
-
-1) Salinity:
-```
-cd salinity
-for mm in {1..16}; do
-    m=`printf "%02d" ${mm}`;
-    echo $m;
-    wget https://data.nodc.noaa.gov/woa/WOA13/DATAv2/salinity/netcdf/decav/0.25/woa13_decav_s${m}_04v2.nc;
-done
-cd ../
-```
-
-2) Temperature:
-```
-cd temperature
-for mm in {1..16}; do
-    m=`printf "%02d" ${mm}`;
-    echo $m;
-    wget https://data.nodc.noaa.gov/woa/WOA13/DATAv2/temperature/netcdf/decav/0.25/woa13_decav_s${m}_04v2.nc;
-done
-cd ../
-```
- 
+WOA13v2 datset includes in-situ temperature and practical salinity. Therefore, in order to use this data to initialise our TEOS10 based configurations they need to be converted in Conservative Temperature and Absolute Salinity first.
 

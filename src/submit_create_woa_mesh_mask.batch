@@ -1,0 +1,10 @@
+#!/bin/bash -l
+
+#SBATCH --qos=normal                
+#SBATCH --mem=150000                    
+#SBATCH --ntasks=8                   
+#SBATCH --output=pTS.out       
+#SBATCH --time=360                    
+
+python create_woa_mesh_mask.py 
+

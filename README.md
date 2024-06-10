@@ -33,7 +33,7 @@ conda env create -f pyogcm.yml
 conda activate pyogcm
 ```
 
-## Generating WOA13v2-based initial condition following OMIP protocol
+# Generating WOA13v2-based initial condition following OMIP protocol
 
 Before running the code, make sure to adpat the `Input parameters` section of each scritp to your needs.
 

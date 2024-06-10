@@ -62,6 +62,11 @@ We use the suite [u-cx924@289674](https://code.metoffice.gov.uk/trac/roses-u/bro
 
 The following [rose-suite.conf@289674](https://code.metoffice.gov.uk/trac/roses-u/browser/c/x/9/2/4/trunk/rose-suite.conf?rev=289674) file is used in case of GOSI10-025 (30 iterations of seaoverland are used).
 
-## How to use the WOA13v2-OMIP_eORCA-025 T/S fields to initialise GOSI10p1.1
+## How to use the WOA13v2-OMIP_eORCA-025 T/S fields to initialise GOSI10p1.2
 
+While testing the new initial condition with GOSI10p1.2, I found that we first need to conduct a 10 days long run with Smagorinsky viscosity to ensure that the run is stable and after using the restart from this simulation to initialise the lopng simulation with the standard viscosity. The same procedure was needed also with GOSI9-12 but not with GOSI9-025.
+
+The suite [u-dg800@289603](https://code.metoffice.gov.uk/trac/roses-u/browser/d/g/8/0/0/trunk?rev=289603) was used to run the 10 days long simulation and create the restart for the longer GOSI10p1.2 simulation. The suite [u-dg878@289604](https://code.metoffice.gov.uk/trac/roses-u/browser/d/g/8/7/8/trunk?rev=289604) was used to run the 33 years long GOSI10p1.2.
+
+For clarity: GOSI10p1.2 is the release of GOSI10 with new bathymetry, JRAA-55do forcing and WOA13v2-OMIP initial state. 
 

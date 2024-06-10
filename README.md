@@ -62,5 +62,6 @@ We use the suite [u-cx924@289674](https://code.metoffice.gov.uk/trac/roses-u/bro
 
 The following [rose-suite.conf@289674](https://code.metoffice.gov.uk/trac/roses-u/browser/c/x/9/2/4/trunk/rose-suite.conf?rev=289674) file is used in case of GOSI10-025 (30 iterations of seaoverland are used).
 
+## How to use the WOA13v2-OMIP_eORCA-025 T/S fields to initialise GOSI10p1.1
 
 

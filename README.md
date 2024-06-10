@@ -21,13 +21,13 @@ WOA13v2 datset includes in-situ temperature and practical salinity. Therefore, i
 
 # Quick-start
 
-### Clone the repository
+### 1. Clone the repository
 ```
 git clone git@github.com:JMMP-Group/GO-iniTS.git
 cd GO-iniTS
 ```
 
-### Create and activate conda environment
+### 2. Create and activate conda environment
 ```
 conda env create -f pyogcm.yml
 conda activate pyogcm
@@ -37,19 +37,19 @@ conda activate pyogcm
 
 Before running the code, make sure to adpat the `Input parameters` section of each scritp to your needs.
 
-### Download WAO13v2 data
+### 1. Download WAO13v2 data
 ```
 cd src
 ./download_woa13v2_data.sh
 ```
 
-### Generate T/S initial condition
+### 2. Generate T/S initial condition
 ```
 python  generate_iniTS.py
 ```
 N.B: on Met Office machines, this script is run using SLURM with the [submit_generate_iniTS.batch](https://github.com/JMMP-Group/GO-iniTS/blob/main/src/submit_generate_iniTS.batch) script file. 
 
-### Generate a mesh_mask.nc file for WOA13v2 data
+### 3. Generate a mesh_mask.nc file for WOA13v2 data
 ```
 python create_woa_mesh_mask.py
 ```

@@ -13,29 +13,23 @@ The initial temperature and salinity fields are therefore each a composit of two
 
 The Geomar [CMIP6-OMIP/OMIP-input](https://git.geomar.de/cmip6-omip/omip-input) repository provides an example of the workflow and the code to generate an initial ocean state in agreement with OMIP protocol.
 
-## WOA13.v2 data
+The documentation for [WOA13.v2](https://www.ncei.noaa.gov/data/oceans/woa/WOA13/DATAv2/) dataset can be found [here](https://www.ncei.noaa.gov/data/oceans/woa/WOA13/DOC/woa13documentation.pdf). WOA13v2 datset includes in-situ temperature and practical salinity. Therefore, in order to use this data to initialise our TEOS10 based configurations they need to be converted in Conservative Temperature and Absolute Salinity first.
 
-Thd documentation for [WOA13.v2](https://www.ncei.noaa.gov/data/oceans/woa/WOA13/DATAv2/) dataset can be found [here](https://www.ncei.noaa.gov/data/oceans/woa/WOA13/DOC/woa13documentation.pdf).
-
-WOA13v2 datset includes in-situ temperature and practical salinity. Therefore, in order to use this data to initialise our TEOS10 based configurations they need to be converted in Conservative Temperature and Absolute Salinity first.
-
-# Quick-start
+## Quick-start
 
 ### 1. Clone the repository
 ```
 git clone git@github.com:JMMP-Group/GO-iniTS.git
 cd GO-iniTS
 ```
-
 ### 2. Create and activate conda environment
 ```
 conda env create -f pyogcm.yml
 conda activate pyogcm
 ```
+## Generating WOA13v2-based initial condition following OMIP protocol
 
-# Generating WOA13v2-based initial condition following OMIP protocol
-
-Before running the code, make sure to adpat the `Input parameters` section of each scritp to your needs.
+Before running the code, make sure to adapt the `Input parameters` section of each script to your needs.
 
 ### 1. Download WAO13v2 data
 ```
@@ -54,3 +48,7 @@ N.B: on Met Office machines, this script is run using SLURM with the [submit_gen
 python create_woa_mesh_mask.py
 ```
 N.B: on Met Office machines, this script is run using SLURM with the [submit_create_woa_mesh_mask.batch](https://github.com/JMMP-Group/GO-iniTS/blob/main/src/submit_create_woa_mesh_mask.batch) script file.
+
+## Interpolating WOA13v2-omip fields onto eORCA-025 grid wir $z$-coordinates
+
+

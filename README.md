@@ -17,38 +17,50 @@ The documentation for [WOA13.v2](https://www.ncei.noaa.gov/data/oceans/woa/WOA13
 
 ## Quick-start
 
-### 1. Clone the repository
+#### 1. Clone the repository
 ```
 git clone git@github.com:JMMP-Group/GO-iniTS.git
 cd GO-iniTS
 ```
-### 2. Create and activate conda environment
+#### 2. Create and activate conda environment
 ```
 conda env create -f pyogcm.yml
 conda activate pyogcm
 ```
+
 ## Generating WOA13v2-based initial condition following OMIP protocol
 
 Before running the code, make sure to adapt the `Input parameters` section of each script to your needs.
 
-### 1. Download WAO13v2 data
+#### 1. Download WAO13v2 data
 ```
 cd src
 ./download_woa13v2_data.sh
 ```
 
-### 2. Generate T/S initial condition
+#### 2. Generate T/S initial condition
 ```
 python  generate_iniTS.py
 ```
 N.B: on Met Office machines, this script is run using SLURM with the [submit_generate_iniTS.batch](https://github.com/JMMP-Group/GO-iniTS/blob/main/src/submit_generate_iniTS.batch) script file. 
 
-### 3. Generate a mesh_mask.nc file for WOA13v2 data
+#### 3. Generate a mesh_mask.nc file for WOA13v2 data
 ```
 python create_woa_mesh_mask.py
 ```
 N.B: on Met Office machines, this script is run using SLURM with the [submit_create_woa_mesh_mask.batch](https://github.com/JMMP-Group/GO-iniTS/blob/main/src/submit_create_woa_mesh_mask.batch) script file.
 
-## Interpolating WOA13v2-omip fields onto eORCA-025 grid wir $z$-coordinates
+
+## Remap WOA13v2-OMIP fields onto eORCA-025 grid with $z$-coordinates
+
+We use the suite [u-cx924@289674](https://code.metoffice.gov.uk/trac/roses-u/browser/c/x/9/2/4/trunk?rev=289674) (accessible by anyone able to access Monsoon) to remap WOA13v2-OMIP Conservative Temperature and Absolute Salinity fields onto eORCA-025 grid. The suite carries out the following tasks:
+
+1) Uses the the SCRIP (available also ESMF) package to compute the interpolation weights to remap from WOA13v2 regular lat-lon horizontal grid onto the orthogonal curvilinear eORCA-025 horizontal grid with bi-linear interpolation.
+2) Computes the interpolation weigths to remap from WOA13v2 $z$-levels onto eORCA-025 $z$-levels with partial steps using linear interpolation (in-house code). 
+3) In the case of the WOA13v2-OMIP datset, extrapolates T and S values from coastal wet cells onto land cells using a python version of the [seaoverland](https://forge.nemo-ocean.eu/nemo/nemo/-/blob/main/src/OCE/SBC/fldread.F90?ref_type=heads#L1304) NEMO module.
+4) Applies the previously computed horizontal and vertical remapping weights to remap the "filled-flooded" WOA13v2-OMIP fields onto the eORCA025 mesh.
+
+The following [rose-suite.conf@289674](https://code.metoffice.gov.uk/trac/roses-u/browser/c/x/9/2/4/trunk/rose-suite.conf?rev=289674) file is used in case of GOSI10-025 (30 iterations of seaoverland are used).
+
 
 

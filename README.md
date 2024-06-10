@@ -19,3 +19,38 @@ Thd documentation for [WOA13.v2](https://www.ncei.noaa.gov/data/oceans/woa/WOA13
 
 WOA13v2 datset includes in-situ temperature and practical salinity. Therefore, in order to use this data to initialise our TEOS10 based configurations they need to be converted in Conservative Temperature and Absolute Salinity first.
 
+# Quick-start
+
+### Clone the repository
+```
+git clone git@github.com:JMMP-Group/GO-iniTS.git
+cd GO-iniTS
+```
+
+### Create and activate conda environment
+```
+conda env create -f pyogcm.yml
+conda activate pyogcm
+```
+
+## Generating WOA13v2-based initial condition following OMIP protocol
+
+Before running the code, make sure to adpat the `Input parameters` section of each scritp to your needs.
+
+### Download WAO13v2 data
+```
+cd src
+./download_woa13v2_data.sh
+```
+
+### Generate T/S initial condition
+```
+python  generate_iniTS.py
+```
+N.B: on Met Office machines, this script is run using SLURM with the [submit_generate_iniTS.batch](https://github.com/JMMP-Group/GO-iniTS/blob/main/src/submit_generate_iniTS.batch) script file. 
+
+### Generate a mesh_mask.nc file for WOA13v2 data
+```
+python create_woa_mesh_mask.py
+```
+N.B: on Met Office machines, this script is run using SLURM with the [submit_create_woa_mesh_mask.batch](https://github.com/JMMP-Group/GO-iniTS/blob/main/src/submit_create_woa_mesh_mask.batch) script file.
